@@ -7,10 +7,10 @@
       <Diagram DiagramId="e7052b660fd94478a5cb0ed10bfffe85" Name="Diagram1">
         <EntityTypeShape EntityType="systrackingModel.Chofer" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="systrackingModel.Cliente" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="systrackingModel.DetallePedido" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="systrackingModel.DetallePedido" Width="1.5" PointX="8.875" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="systrackingModel.Viaje" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <AssociationConnector Association="systrackingModel.FK_Viaje_Chofer" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="systrackingModel.Pedido" Width="1.5" PointX="5.25" PointY="2.875" />
+        <EntityTypeShape EntityType="systrackingModel.Pedido" Width="1.5" PointX="6.25" PointY="2.375" />
         <AssociationConnector Association="systrackingModel.FK_Pedido_Cliente" />
         <AssociationConnector Association="systrackingModel.FK_DetallePedido_Pedido" />
         <AssociationConnector Association="systrackingModel.FK_Pedido_Viaje" />
