@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="systrackingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Chofer">
+    <Key>
+      <PropertyRef Name="idChofer" />
+    </Key>
+    <Property Name="idChofer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="90" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="30" />
+    <Property Name="email" Type="varchar" MaxLength="90" />
+    <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="documento" />
+    </Key>
+    <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="apellido" Type="varchar" MaxLength="70" Nullable="false" />
+    <Property Name="telefono" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="400" Nullable="false" />
+  </EntityType>
+  <EntityType Name="DetallePedido">
+    <Key>
+      <PropertyRef Name="NuPedido" />
+      <PropertyRef Name="producto" />
+    </Key>
+    <Property Name="NuPedido" Type="bigint" Nullable="false" />
+    <Property Name="producto" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cantidad" Type="smallint" />
+    <Property Name="precioUnitario" Type="float" />
+  </EntityType>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="NuPedido" />
+    </Key>
+    <Property Name="NuPedido" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="observaciones" Type="varchar" MaxLength="200" />
+    <Property Name="direccion" Type="varchar" MaxLength="300" Nullable="false" />
+    <Property Name="fecha_entrega" Type="datetime" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="datetime" Nullable="false" />
+    <Property Name="documento" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="idViaje" Type="bigint" />
+  </EntityType>
+  <EntityType Name="Viaje">
+    <Key>
+      <PropertyRef Name="idViaje" />
+    </Key>
+    <Property Name="idViaje" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="200" />
+    <Property Name="idChofer" Type="int" />
+    <Property Name="estado" Type="varchar" MaxLength="40" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="datetime" Nullable="false" />
+    <Property Name="fecha_viaje" Type="datetime" Nullable="false" />
+    <Property Name="horas_estimadas" Type="float" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_DetallePedido_Pedido">
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="1" />
+    <End Role="DetallePedido" Type="Self.DetallePedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="NuPedido" />
+      </Principal>
+      <Dependent Role="DetallePedido">
+        <PropertyRef Name="NuPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Viaje">
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="0..1" />
+    <End Role="Pedido" Type="Self.Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Viaje">
+        <PropertyRef Name="idViaje" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idViaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Viaje_Chofer">
+    <End Role="Chofer" Type="Self.Chofer" Multiplicity="0..1" />
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chofer">
+        <PropertyRef Name="idChofer" />
+      </Principal>
+      <Dependent Role="Viaje">
+        <PropertyRef Name="idChofer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="systrackingModelStoreContainer">
+    <EntitySet Name="Chofer" EntityType="Self.Chofer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Viaje" EntityType="Self.Viaje" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DetallePedido_Pedido" Association="Self.FK_DetallePedido_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="DetallePedido" EntitySet="DetallePedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Cliente" Association="Self.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Viaje" Association="Self.FK_Pedido_Viaje">
+      <End Role="Viaje" EntitySet="Viaje" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Viaje_Chofer" Association="Self.FK_Viaje_Chofer">
+      <End Role="Chofer" EntitySet="Chofer" />
+      <End Role="Viaje" EntitySet="Viaje" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

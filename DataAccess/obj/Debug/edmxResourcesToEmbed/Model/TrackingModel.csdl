@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="systrackingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Chofer">
+    <Key>
+      <PropertyRef Name="idChofer" />
+    </Key>
+    <Property Name="idChofer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="90" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="90" FixedLength="false" Unicode="false" />
+    <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Viaje" Relationship="Self.FK_Viaje_Chofer" FromRole="Chofer" ToRole="Viaje" />
+  </EntityType>
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="documento" />
+    </Key>
+    <Property Name="documento" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="nombre" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="apellido" Type="String" MaxLength="70" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="telefono" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="400" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Pedido" Relationship="systrackingModel.FK_Pedido_Cliente" FromRole="Cliente" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="DetallePedido">
+    <Key>
+      <PropertyRef Name="NuPedido" />
+      <PropertyRef Name="producto" />
+    </Key>
+    <Property Name="NuPedido" Type="Int64" Nullable="false" />
+    <Property Name="producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Int16" />
+    <Property Name="precioUnitario" Type="Double" />
+    <NavigationProperty Name="Pedido" Relationship="systrackingModel.FK_DetallePedido_Pedido" FromRole="DetallePedido" ToRole="Pedido" />
+  </EntityType>
+  <EntityType Name="Viaje">
+    <Key>
+      <PropertyRef Name="idViaje" />
+    </Key>
+    <Property Name="idViaje" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="idChofer" Type="Int32" />
+    <Property Name="estado" Type="String" MaxLength="40" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_viaje" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="horas_estimadas" Type="Double" Nullable="false" />
+    <NavigationProperty Name="Chofer" Relationship="Self.FK_Viaje_Chofer" FromRole="Viaje" ToRole="Chofer" />
+    <NavigationProperty Name="Pedido" Relationship="systrackingModel.FK_Pedido_Viaje" FromRole="Viaje" ToRole="Pedido" />
+  </EntityType>
+  <Association Name="FK_Viaje_Chofer">
+    <End Role="Chofer" Type="Self.Chofer" Multiplicity="0..1" />
+    <End Role="Viaje" Type="Self.Viaje" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chofer">
+        <PropertyRef Name="idChofer" />
+      </Principal>
+      <Dependent Role="Viaje">
+        <PropertyRef Name="idChofer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrackingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Chofer" EntityType="Self.Chofer" />
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="DetallePedido" EntityType="Self.DetallePedido" />
+    <EntitySet Name="Viaje" EntityType="Self.Viaje" />
+    <AssociationSet Name="FK_Viaje_Chofer" Association="Self.FK_Viaje_Chofer">
+      <End Role="Chofer" EntitySet="Chofer" />
+      <End Role="Viaje" EntitySet="Viaje" />
+    </AssociationSet>
+    <EntitySet Name="Pedido" EntityType="systrackingModel.Pedido" />
+    <AssociationSet Name="FK_Pedido_Cliente" Association="systrackingModel.FK_Pedido_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_DetallePedido_Pedido" Association="systrackingModel.FK_DetallePedido_Pedido">
+      <End Role="Pedido" EntitySet="Pedido" />
+      <End Role="DetallePedido" EntitySet="DetallePedido" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Pedido_Viaje" Association="systrackingModel.FK_Pedido_Viaje">
+      <End Role="Viaje" EntitySet="Viaje" />
+      <End Role="Pedido" EntitySet="Pedido" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Pedido">
+    <Key>
+      <PropertyRef Name="NuPedido" />
+    </Key>
+    <Property Name="NuPedido" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="observaciones" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="direccion" Type="String" Nullable="false" MaxLength="300" FixedLength="false" Unicode="false" />
+    <Property Name="fecha_entrega" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="fecha_ingreso" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="documento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="idViaje" Type="Int64" />
+    <NavigationProperty Name="Cliente" Relationship="systrackingModel.FK_Pedido_Cliente" FromRole="Pedido" ToRole="Cliente" />
+    <NavigationProperty Name="DetallePedido" Relationship="systrackingModel.FK_DetallePedido_Pedido" FromRole="Pedido" ToRole="DetallePedido" />
+    <NavigationProperty Name="Viaje" Relationship="systrackingModel.FK_Pedido_Viaje" FromRole="Pedido" ToRole="Viaje" />
+  </EntityType>
+  <Association Name="FK_Pedido_Cliente">
+    <End Type="systrackingModel.Cliente" Role="Cliente" Multiplicity="1" />
+    <End Type="systrackingModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="documento" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="documento" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_DetallePedido_Pedido">
+    <End Type="systrackingModel.Pedido" Role="Pedido" Multiplicity="1" />
+    <End Type="systrackingModel.DetallePedido" Role="DetallePedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pedido">
+        <PropertyRef Name="NuPedido" />
+      </Principal>
+      <Dependent Role="DetallePedido">
+        <PropertyRef Name="NuPedido" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Pedido_Viaje">
+    <End Type="systrackingModel.Viaje" Role="Viaje" Multiplicity="0..1" />
+    <End Type="systrackingModel.Pedido" Role="Pedido" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Viaje">
+        <PropertyRef Name="idViaje" />
+      </Principal>
+      <Dependent Role="Pedido">
+        <PropertyRef Name="idViaje" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

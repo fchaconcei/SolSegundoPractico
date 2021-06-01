@@ -1,0 +1,14 @@
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\BusinessLogic.dll
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\BusinessLogic.pdb
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\CommonSolution.dll
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\DataAccess.dll
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\EntityFramework.dll
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\CommonSolution.pdb
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\DataAccess.pdb
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\DataAccess.dll.config
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\bin\Debug\EntityFramework.xml
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\obj\Debug\BusinessLogic.csprojAssemblyReference.cache
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\obj\Debug\BusinessLogic.csproj.CoreCompileInputs.cache
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\obj\Debug\BusinessLogic.csproj.CopyComplete
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\obj\Debug\BusinessLogic.dll
+C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\BusinessLogic\obj\Debug\BusinessLogic.pdb
