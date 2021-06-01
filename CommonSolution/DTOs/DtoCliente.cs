@@ -9,7 +9,7 @@ namespace CommonSolution
 {
     public class DtoCliente : IDto
     {
-
+        //comentario1
         public string documento;
         public string nombre;
         public string apellido;
