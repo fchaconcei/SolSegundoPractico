@@ -9,6 +9,8 @@ namespace CommonSolution
 {
     public class DtoCliente : IDto
     {
+
+
         public string documento;
         public string nombre;
         public string apellido;
