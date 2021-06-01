@@ -1,6 +1,0 @@
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\bin\Debug\CommonSolution.dll
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\bin\Debug\CommonSolution.pdb
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\obj\Debug\CommonSolution.csprojAssemblyReference.cache
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\obj\Debug\CommonSolution.csproj.CoreCompileInputs.cache
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\obj\Debug\CommonSolution.dll
-C:\Users\facun\OneDrive\Escritorio\CEI\Sol-Practico2EF\Sol-Practico2EF\CommonSolution\obj\Debug\CommonSolution.pdb
